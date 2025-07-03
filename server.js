@@ -3,14 +3,14 @@
 // Load environment variables from .env file
 require('dotenv').config();
 
-const express = require('express');
+const express = require('express'); // تصحیح شده بود
 const path = require('path');
 const cors = require('cors'); // اضافه شد: پکیج CORS
 const connectDB = require('./config/db');
 const rankingRoutes = require('./routes/rankings');
 
 const app = express();
-const PORT = process.env.PORT || 10000; // !!! پورت به 10000 تغییر یافت (یا 8080) !!!
+const PORT = process.env.PORT || 10000; // پورت به 10000 تغییر یافت
 
 // Connect to the database
 connectDB();
@@ -67,7 +67,7 @@ app.get('*', (req, res) => {
 });
 
 // Start the server
-app.listen(PORT, '0.0.0.0', () => { // !!! '0.0.0.0' اضافه شد !!!
+app.listen(PORT, '0.0.0.0', () => { // '0.0.0.0' اضافه شد
     console.log(`Server running on port ${PORT}`);
     console.log(`Open http://localhost:${PORT}/tierlist.html in your browser`);
 });

@@ -133,7 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ----------- بارگذاری پروژه‌ها از بک‌اند -----------
     async function loadProjects() {
         try {
-            // !!! آدرس API بک‌اند آنلاین شما (تصحیح شده) !!!
+            // !!! آدرس API بک‌اند آنلاین شما (نهایی) !!!
             const response = await fetch('https://story-protocol-tierlist-production.up.railway.app/api/projects');
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
@@ -191,7 +191,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // اگر توییتر هندل وارد نشده ولی حداقل یک پروژه رنک شده
-        if (!twitterHandle) { // تغییر شرط: فقط اگر توییتر هندل وارد نشده باشد
+        if (!twitterHandle) {
             showMessage('error', 'Please provide a Twitter handle to submit your ranking.');
             return;
         }
@@ -204,7 +204,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
         try {
-            // !!! آدرس API بک‌اند آنلاین شما (تصحیح شده) !!!
+            // !!! آدرس API بک‌اند آنلاین شما (نهایی) !!!
             const response = await fetch('https://story-protocol-tierlist-production.up.railway.app/api/rankings/submit', {
                 method: 'POST',
                 headers: {
@@ -237,7 +237,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // اعتبار سنجی فرمت توییتر هندل
     function isValidTwitterHandle(handle) {
         // بررسی: شروع با @ و حداقل 4 کاراکتر پس از آن (حروف، اعداد، _ )
-        // حالا که @ در placeholder است و نشانگر LTR شده، کاربر باید @ را خودش وارد کند
+        // حالا که @ در placeholder است، کاربر باید @ را خودش وارد کند (اگر از جهت LTR استفاده می‌کنید)
         const regex = /^@[a-zA-Z0-9_]{4,}$/;
         return regex.test(handle);
     }
