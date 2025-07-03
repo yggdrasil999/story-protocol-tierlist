@@ -3,16 +3,15 @@
 // Load environment variables from .env file
 require('dotenv').config();
 
-const express = require('router'); // !!! اینجا 'router' به اشتباه نوشته شده بود، باید 'express' باشد !!!
+const express = require('express'); // تصحیح شده بود
 const path = require('path');
 const cors = require('cors'); // اضافه شد: پکیج CORS
 const connectDB = require('./config/db');
 const rankingRoutes = require('./routes/rankings');
 
-const app = express(); // !!! تصحیح شد: app = express() !!!
+const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Connect to the database
 connectDB();
 
 // --- IMPORTANT: Project Seeding (Run Once) ---
@@ -28,10 +27,15 @@ connectDB();
 // ---------------------------------------------
 // seedProjects(); // <-- UNCOMMENT THIS LINE FOR THE FIRST RUN, THEN COMMENT IT OUT!
 
-// !!! اضافه شد: CORS middleware !!!
-// این اجازه می‌دهد فرانت‌اند شما از دامنه دیگری به بک‌اند متصل شود
-// برای Production، می‌توانید Origin را محدود کنید: cors({ origin: 'https://yggdrasil999.github.io' })
-app.use(cors());
+// !!! مهم: تنظیمات دقیق CORS برای حل قطعی مشکل !!!
+// فقط به دامنه GitHub Pages شما اجازه دسترسی می‌دهد.
+// اگر دامنه دیگری برای فرانت‌اند داشتید، آن را هم اضافه کنید (با کاما جدا کنید)
+app.use(cors({
+    origin: 'https://yggdrasil999.github.io', // دامنه دقیق فرانت‌اند شما در GitHub Pages
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // متدهای مجاز
+    allowedHeaders: ['Content-Type', 'Authorization'], // هدرهای مجاز
+    credentials: true // اگر در آینده نیاز به کوکی یا احراز هویت داشتید
+}));
 
 // Middleware to parse JSON request bodies
 app.use(express.json());
