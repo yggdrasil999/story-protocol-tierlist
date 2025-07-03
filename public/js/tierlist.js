@@ -133,7 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ----------- بارگذاری پروژه‌ها از بک‌اند -----------
     async function loadProjects() {
         try {
-            // !!! آدرس API بک‌اند آنلاین شما !!!
+            // !!! آدرس API بک‌اند آنلاین شما (تصحیح شده) !!!
             const response = await fetch('https://story-protocol-tierlist-production.up.railway.app/api/projects');
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
@@ -204,7 +204,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
         try {
-            // !!! آدرس API بک‌اند آنلاین شما !!!
+            // !!! آدرس API بک‌اند آنلاین شما (تصحیح شده) !!!
             const response = await fetch('https://story-protocol-tierlist-production.up.railway.app/api/rankings/submit', {
                 method: 'POST',
                 headers: {
