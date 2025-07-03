@@ -5,9 +5,10 @@ require('dotenv').config();
 
 const express = require('express');
 const path = require('path');
-const connectDB = require('./config/db'); // Database connection utility
-const rankingRoutes = require('./routes/rankings'); // API routes for rankings
-const { seedProjects } = require('./public/js/projectsData'); // Import the seedProjects function
+const cors = require('cors'); // !!! اضافه شد: پکیج CORS !!!
+const connectDB = require('./config/db');
+const rankingRoutes = require('./routes/rankings');
+const { seedProjects } = require('./public/js/projectsData');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -27,6 +28,11 @@ connectDB();
 // unnecessary database checks on subsequent server starts.
 // ---------------------------------------------
 // seedProjects(); // <-- UNCOMMENT THIS LINE FOR THE FIRST RUN, THEN COMMENT IT OUT!
+
+// !!! اضافه شد: CORS middleware !!!
+// این اجازه می‌دهد فرانت‌اند شما از دامنه دیگری به بک‌اند متصل شود
+// برای Production، می‌توانید Origin را محدود کنید: cors({ origin: 'https://yggdrasil999.github.io' })
+app.use(cors());
 
 // Middleware to parse JSON request bodies
 app.use(express.json());
