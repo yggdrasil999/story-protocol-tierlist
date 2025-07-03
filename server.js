@@ -3,15 +3,16 @@
 // Load environment variables from .env file
 require('dotenv').config();
 
-const express = require('express'); // تصحیح شده بود
+const express = require('express');
 const path = require('path');
 const cors = require('cors'); // اضافه شد: پکیج CORS
 const connectDB = require('./config/db');
 const rankingRoutes = require('./routes/rankings');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 10000; // !!! پورت به 10000 تغییر یافت (یا 8080) !!!
 
+// Connect to the database
 connectDB();
 
 // --- IMPORTANT: Project Seeding (Run Once) ---
@@ -27,12 +28,11 @@ connectDB();
 // ---------------------------------------------
 // seedProjects(); // <-- UNCOMMENT THIS LINE FOR THE FIRST RUN, THEN COMMENT IT OUT!
 
-// !!! مهم: تنظیمات دقیق CORS برای حل قطعی مشکل !!!
+// !!! تنظیمات دقیق CORS برای حل قطعی مشکل !!!
 // فقط به دامنه GitHub Pages شما اجازه دسترسی می‌دهد.
-// اگر دامنه دیگری برای فرانت‌اند داشتید، آن را هم اضافه کنید (با کاما جدا کنید)
 app.use(cors({
     origin: 'https://yggdrasil999.github.io', // دامنه دقیق فرانت‌اند شما در GitHub Pages
-    methods: ['GET', 'POST', 'PUT', 'DELETE'], // متدهای مجاز
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // متدهای مجاز
     allowedHeaders: ['Content-Type', 'Authorization'], // هدرهای مجاز
     credentials: true // اگر در آینده نیاز به کوکی یا احراز هویت داشتید
 }));
@@ -66,9 +66,8 @@ app.get('*', (req, res) => {
     }
 });
 
-// server.js
-// ...
-app.listen(PORT, '0.0.0.0', () => { // !!! مهم: '0.0.0.0' اضافه شد !!!
+// Start the server
+app.listen(PORT, '0.0.0.0', () => { // !!! '0.0.0.0' اضافه شد !!!
     console.log(`Server running on port ${PORT}`);
     console.log(`Open http://localhost:${PORT}/tierlist.html in your browser`);
 });
