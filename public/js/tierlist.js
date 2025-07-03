@@ -133,7 +133,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // ----------- بارگذاری پروژه‌ها از بک‌اند -----------
     async function loadProjects() {
         try {
-            const response = await fetch('/api/projects');
+            // !!! آدرس API بک‌اند آنلاین شما !!!
+            const response = await fetch('https://story-protocol-tierlist-production.up.railway.app/api/projects');
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
@@ -147,10 +148,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function renderProjects() {
-        // 1. ابتدا تمام محتوای باکس اصلی پروژه‌ها را پاک می‌کنیم
+        // 1. ابتدا تمام پروژه‌ها را از باکس اصلی پاک می‌کنیم
         projectGridContainer.innerHTML = '';
 
-        // 2. !!! مهم: حالا تمام محتوای تمام Tier Dropzones را نیز پاک می‌کنیم !!!
+        // 2. !!! مهم: حالا تمام پروژه‌ها را از تمام Tier Dropzones نیز پاک می‌کنیم !!!
         tierDropzones.forEach(zone => {
             zone.innerHTML = '';
         });
@@ -203,7 +204,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
         try {
-            const response = await fetch('/api/rankings/submit', {
+            // !!! آدرس API بک‌اند آنلاین شما !!!
+            const response = await fetch('https://story-protocol-tierlist-production.up.railway.app/api/rankings/submit', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

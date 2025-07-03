@@ -26,7 +26,7 @@ connectDB();
 // REMEMBER TO COMMENT THIS LINE OUT AGAIN (or remove it) to avoid
 // unnecessary database checks on subsequent server starts.
 // ---------------------------------------------
-seedProjects(); // <-- UNCOMMENT THIS LINE FOR THE FIRST RUN, THEN COMMENT IT OUT!
+// seedProjects(); // <-- UNCOMMENT THIS LINE FOR THE FIRST RUN, THEN COMMENT IT OUT!
 
 // Middleware to parse JSON request bodies
 app.use(express.json());

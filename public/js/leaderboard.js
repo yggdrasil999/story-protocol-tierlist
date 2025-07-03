@@ -5,7 +5,8 @@ document.addEventListener('DOMContentLoaded', () => {
     async function loadLeaderboard() {
         try {
             leaderboardList.innerHTML = '<p>Loading leaderboard data...</p>'; // نمایش پیام بارگذاری
-            const response = await fetch('/api/rankings/leaderboard');
+            // !!! آدرس API بک‌اند آنلاین شما !!!
+            const response = await fetch('https://story-protocol-tierlist-production.up.railway.app/api/rankings/leaderboard');
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
