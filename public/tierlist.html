@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en"> <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Story Protocol Tier List</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="notification-bar">
+            <p><strong>Submission Limit:</strong> You can submit one ranking per day to prevent spam and ensure fair community voting.</p>
+        </div>
+
+        <div class="main-content">
+            <div class="tier-sections-container">
+                <div class="tier-row" id="tier-S" data-tier="S">
+                    <div class="tier-label-wrapper tier-s-color">
+                        <div class="tier-label">S</div>
+                        <div class="tier-name">Exceptional</div>
+                    </div>
+                    <div class="tier-projects-dropzone"></div>
+                </div>
+                <div class="tier-row" id="tier-A" data-tier="A">
+                    <div class="tier-label-wrapper tier-a-color">
+                        <div class="tier-label">A</div>
+                        <div class="tier-name">Great</div>
+                    </div>
+                    <div class="tier-projects-dropzone"></div>
+                </div>
+                <div class="tier-row" id="tier-B" data-tier="B">
+                    <div class="tier-label-wrapper tier-b-color">
+                        <div class="tier-label">B</div>
+                        <div class="tier-name">Good</div>
+                    </div>
+                    <div class="tier-projects-dropzone"></div>
+                </div>
+                <div class="tier-row" id="tier-C" data-tier="C">
+                    <div class="tier-label-wrapper tier-c-color">
+                        <div class="tier-label">C</div>
+                        <div class="tier-name">Average</div>
+                    </div>
+                    <div class="tier-projects-dropzone"></div>
+                </div>
+                <div class="tier-row" id="tier-D" data-tier="D">
+                    <div class="tier-label-wrapper tier-d-color">
+                        <div class="tier-label">D</div>
+                        <div class="tier-name">Below Average</div>
+                    </div>
+                    <div class="tier-projects-dropzone"></div>
+                </div>
+                <div class="tier-row" id="tier-E" data-tier="E">
+                    <div class="tier-label-wrapper tier-e-color">
+                        <div class="tier-label">E</div>
+                        <div class="tier-name">Poor</div>
+                    </div>
+                    <div class="tier-projects-dropzone"></div>
+                </div>
+                <div class="tier-row" id="tier-F" data-tier="F">
+                    <div class="tier-label-wrapper tier-f-color">
+                        <div class="tier-label">F</div>
+                        <div class="tier-name">Very Poor</div>
+                    </div>
+                    <div class="tier-projects-dropzone"></div>
+                </div>
+            </div>
+
+            <div class="right-panel">
+                <div class="projects-to-rank-container glass-effect">
+                    <h3>Projects to Rank (<span id="remaining-projects-count">0</span> remaining)</h3>
+                    <div class="project-grid-container" id="project-grid-container">
+                        </div>
+                </div>
+
+                <div class="submit-ranking-section glass-effect">
+                    <h3>Submit Your Rankings</h3>
+                    <div class="input-group">
+                        <label for="twitter-handle">Twitter Handle (optional)</label>
+                        <input type="text" id="twitter-handle" placeholder="@yourusername">
+                    </div>
+                    <button id="submit-rankings-btn">Submit Rankings (<span id="ranked-projects-count">0</span> projects)</button>
+                    <a href="leaderboard.html" class="leaderboard-link">View Live Leaderboard</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>
+            Powered by 
+            <a href="https://twitter.com/yggdrasil_99" target="_blank" rel="noopener noreferrer">@yggdrasil_99</a> & 
+            <a href="https://twitter.com/Arlos_x" target="_blank" rel="noopener noreferrer">@Arlos_x</a> & 
+            <a href="https://twitter.com/Ho3ein_SaBaHi" target="_blank" rel="noopener noreferrer">@Ho3ein_SaBaHi</a>
+        </p>
+    </footer>
+
+    <script src="js/tierlist.js"></script>
+</body>
+</html>

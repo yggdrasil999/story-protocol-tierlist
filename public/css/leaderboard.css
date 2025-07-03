@@ -1,0 +1,148 @@
+/* public/css/leaderboard.css */
+
+.back-link {
+    /* display: inline-block; <-- این خط را حذف کنید */
+    margin-bottom: 20px;
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.2s ease;
+    float: left;
+    clear: both;
+    margin-left: 0;
+    margin-right: auto;
+    padding-left: 20px;
+}
+
+.back-link:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+.leaderboard-content {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 700px; /* حداکثر عرض برای لیدربرد */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.leaderboard-list {
+    width: 100%;
+    margin-top: 20px;
+    border-radius: 8px;
+    overflow: hidden; /* برای border-radius */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.leaderboard-item {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    background-color: rgba(50, 50, 50, 0.6); /* کمی روشن‌تر از پس‌زمینه */
+    transition: background-color 0.2s ease;
+    /* direction: ltr; <-- این خط حذف شد چون body LTR است. */
+}
+
+.leaderboard-item:last-child {
+    border-bottom: none;
+}
+
+.leaderboard-item:nth-child(even) {
+    background-color: rgba(45, 45, 45, 0.6);
+}
+
+.leaderboard-item:hover {
+    background-color: rgba(60, 60, 60, 0.7);
+}
+
+.leaderboard-item .rank {
+    font-size: 1.2em;
+    font-weight: bold;
+    width: 40px;
+    text-align: left; /* رتبه به سمت چپ چسبیده باشد */
+    flex-shrink: 0;
+    color: #fff;
+    order: 1; /* رتبه اولین عنصر از چپ */
+}
+
+.leaderboard-item .project-logo {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin: 0 15px; /* فاصله از رتبه و اسم پروژه */
+    object-fit: cover;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    flex-shrink: 0;
+    order: 2; /* لوگو دومین عنصر */
+}
+
+.leaderboard-item .project-name {
+    flex-grow: 1;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #f0f0f0;
+    text-align: left; /* نام پروژه چپ‌چین باشد */
+    order: 3; /* نام پروژه سومین عنصر و فضای باقی مانده را بگیرد */
+}
+
+.leaderboard-item .score-votes {
+    text-align: right; /* امتیاز و رأی راست‌چین باشند */
+    flex-shrink: 0;
+    margin-left: 15px; /* فاصله از نام پروژه */
+    order: 4; /* امتیاز و رأی آخرین عنصر از چپ (یا اولین از راست در LTR) */
+}
+
+#refresh-leaderboard-btn {
+    margin-top: 20px;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#refresh-leaderboard-btn:hover {
+    background-color: #0056b3;
+}
+
+.update-info {
+    margin-top: 10px;
+    font-size: 0.8em;
+    color: #a0a0a0;
+}
+
+/* Initial loading state */
+.leaderboard-list p {
+    text-align: center;
+    padding: 20px;
+    color: #b0b0b0;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .leaderboard-item {
+        flex-wrap: wrap;
+        justify-content: center;
+        text-align: center;
+    }
+    .leaderboard-item .rank,
+    .leaderboard-item .project-logo {
+        margin-bottom: 10px;
+    }
+    .leaderboard-item .project-name {
+        flex-basis: 100%;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    .leaderboard-item .score-votes {
+        text-align: center;
+        width: 100%;
+        margin-right: 0;
+    }
+}

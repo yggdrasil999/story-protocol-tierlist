@@ -1,0 +1,446 @@
+/* General Styles */
+body {
+    /* direction: rtl; <-- This was removed for full LTR */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #1a1a1a; /* مشکی تیره */
+    color: #f0f0f0; /* متن سفید/روشن */
+    display: flex;
+    flex-direction: column; /* برای اینکه فوتر زیر محتوا قرار بگیرد */
+    justify-content: flex-start;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex-grow: 1; /* اجازه رشد به کانتینر اصلی را می‌دهد */
+}
+
+.glass-effect {
+    background-color: rgba(40, 40, 40, 0.7); /* طوسی تیره با شفافیت */
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(8px); /* افکت شیشه‌ای */
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.notification-bar {
+    background-color: rgba(255, 193, 7, 0.8); /* زرد هشدار */
+    color: #333;
+    padding: 10px 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    text-align: center; /* متن داخل آن وسط چین باشد */
+    font-size: 0.9em;
+    font-weight: bold;
+    /* direction: ltr; <-- این خط دیگر لازم نیست چون body LTR است. */
+}
+
+h2, h3 {
+    color: #e0e0e0;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+/* Main Content Layout */
+.main-content {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    /* این خط تعیین می‌کند که Tierها سمت چپ و پنل راست سمت راست باشند */
+    flex-direction: row; /* در LTR، این باعث می‌شود Tierها چپ و پنل راست راست باشند */
+}
+
+.tier-sections-container {
+    flex: 2; /* Tierها فضای بیشتری می‌گیرند */
+    min-width: 450px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    order: 1; /* Tierها در اولین موقعیت (سمت چپ) */
+}
+
+.right-panel {
+    flex: 1; /* پنل راست فضای کمتری می‌گیرد */
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    order: 2; /* پنل راست در دومین موقعیت (سمت راست) */
+    height: 100%;
+    max-height: calc(100vh - 100px); /* 100px برای هدر، فوتر و margin‌ها (به صورت تقریبی) */
+}
+
+/* Tier Rows */
+.tier-row {
+    display: flex;
+    align-items: center;
+    min-height: 100px;
+    border-radius: 8px;
+    padding: 10px;
+    transition: background-color 0.2s ease;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    /* background-color: rgba(40, 40, 40, 0.7); <-- این خط باید کامنت/حذف شده باشد */
+    flex-direction: row;   /* در LTR، لیبل رنگی به چپ می‌رود */
+    gap: 15px; /* فاصله بین tier-label-wrapper و tier-projects-dropzone */
+}
+
+.tier-row.drag-over {
+    background-color: rgba(255, 255, 255, 0.1); /* رنگ روشن‌تر هنگام درگ */
+}
+
+/* --- شروع استایل‌های جدید/تغییر یافته برای ظاهر Tier Labels --- */
+.tier-label-wrapper {
+    width: 100px; /* عرض کلی بخش رنگی */
+    height: 100px; /* ارتفاع کلی بخش رنگی */
+    display: flex;
+    flex-direction: column; /* برای اینکه لیبل و نام زیر هم قرار بگیرند */
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    flex-shrink: 0; /* از کوچک شدن جلوگیری می‌کند */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    /* !!! مهم: این خطوط رنگ پس زمینه اختصاصی Tier ها را فعال می‌کند !!! */
+    /* background-color: rgba(40, 40, 40, 0.7); <-- این خط قبلی بود که مشکل ایجاد می‌کرد. */
+    /* رنگ‌ها را از کلاس‌های tier-s-color و غیره می‌گیریم. */
+}
+
+.tier-label {
+    /* عرض و ارتفاع کوچکتر برای حرف S, A, ... */
+    width: 50px;
+    height: 50px;
+    font-size: 2em; /* فونت کمی کوچکتر */
+    font-weight: bold;
+    color: #fff;
+    border-radius: 6px; /* کمی گردتر */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Tier Colors - اینها حالا به tier-label-wrapper اعمال می‌شوند */
+.tier-s-color { background-color: rgba(220, 53, 69, 0.9); } /* Red - کمی پررنگ‌تر */
+.tier-a-color { background-color: rgba(255, 159, 67, 0.9); } /* Orange */
+.tier-b-color { background-color: rgba(255, 206, 84, 0.9); } /* Yellow */
+.tier-c-color { background-color: rgba(40, 167, 69, 0.9); }  /* Green */
+.tier-d-color { background-color: rgba(23, 162, 184, 0.9); } /* Cyan */
+.tier-e-color { background-color: rgba(102, 16, 242, 0.9); } /* Purple */
+.tier-f-color { background-color: rgba(0, 123, 255, 0.9); }  /* Blue */
+
+
+.tier-name {
+    font-size: 0.8em; /* فونت کوچکتر */
+    font-weight: normal; /* وزن فونت نرمال */
+    color: rgba(255, 255, 255, 0.8); /* رنگ کمی کمرنگ‌تر */
+    margin-top: 5px; /* فاصله از لیبل اصلی */
+    text-align: center;
+    line-height: 1.2; /* فاصله خطوط */
+}
+/* --- پایان استایل‌های جدید/تغییر یافته برای ظاهر Tier Labels --- */
+
+
+.tier-projects-dropzone {
+    flex-grow: 1;
+    min-height: 80px;
+    border: 2px dashed rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    padding: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;   /* چیدمان از چپ به راست */
+    gap: 5px;
+    align-content: flex-start;
+    transition: border-color 0.2s ease;
+    /* margin-left و order حذف شد، gap در tier-row کافی است */
+}
+
+/* Projects to Rank Section */
+.projects-to-rank-container {
+    text-align: center;
+    flex-grow: 1; /* اجازه رشد به این باکس را می‌دهد */
+    display: flex; /* برای تنظیم اسکرول داخلی */
+    flex-direction: column; /* محتواش عمودی چیده میشه */
+    overflow: hidden; /* پنهان کردن هر چیزی که از باکس بیرون میزنه */
+}
+
+.project-grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 10px;
+    padding: 10px;
+    min-height: 250px;
+    border: 2px dashed rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    align-content: flex-start;
+    flex-grow: 1;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+
+    /* direction: ltr; <-- این خط حذف شد چون body LTR است و این پیش‌فرض می‌شود */
+
+    /* استایل سفارشی برای اسکرول بار (برای فایرفاکس) */
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.7) rgba(40, 40, 40, 0.5); /* رنگ سفید/روشن برای Thumb، طوسی تیره برای Track */
+}
+
+/* برای مرورگرهای WebKit (کروم، سافاری) */
+.project-grid-container::-webkit-scrollbar {
+    width: 8px;
+    height: 8px; /* برای اسکرول بارهای افقی (اگر داشتیم) */
+}
+
+.project-grid-container::-webkit-scrollbar-track {
+    background: rgba(40, 40, 40, 0.5); /* Track: طوسی تیره با شفافیت */
+    border-radius: 10px;
+}
+
+.project-grid-container::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.7); /* Thumb: سفید/روشن با شفافیت */
+    border-radius: 10px;
+    border: 2px solid transparent; /* برای ظاهری بهتر اگر نیاز بود */
+    background-clip: padding-box; /* برای اعمال border روی thumb */
+}
+
+.project-grid-container::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.9); /* رنگ روشن‌تر هنگام هاور */
+}
+
+/* project-grid-container > * { direction: rtl; } <-- این خط حذف شد چون محتوا هم LTR است */
+
+
+.project-item {
+    background-color: rgba(60, 60, 60, 0.8); /* رنگ خاکستری تیره برای آیتم‌ها */
+    border-radius: 8px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    cursor: grab;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-decoration: none; /* برای اطمینان از حذف underline در صورت وجود */
+    color: inherit; /* برای اطمینان از اینکه رنگ متن از والد به ارث می‌رسد */
+}
+
+.project-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.project-item.dragging {
+    opacity: 0.5;
+    cursor: grabbing;
+}
+
+.project-item img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%; /* لوگو گرد */
+    object-fit: cover;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.project-item span {
+    font-size: 0.85em;
+    font-weight: bold;
+    text-align: center;
+    color: #e0e0e0;
+}
+
+/* Submit Ranking Section */
+.submit-ranking-section {
+    text-align: center;
+    flex-shrink: 0; /* از کوچک شدن این بخش جلوگیری می‌کند */
+}
+
+.input-group {
+    margin-bottom: 15px;
+    /* لیبل توییتر چپ چین باشد */
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #d0d0d0;
+    font-size: 0.9em;
+}
+
+.input-group input[type="text"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: rgba(20, 20, 20, 0.7); /* پس‌زمینه تیره برای اینپوت */
+    color: #f0f0f0;
+    font-size: 1em;
+    outline: none;
+    transition: border-color 0.2s ease;
+    /* این خطوط را برای تنظیم جهت و مکان نشانگر تغییر دادیم */
+    text-align: left; /* متن و placeholder از چپ شروع شوند */
+    /* direction: rtl; <-- این خط حذف شد، فیلد ورودی حالا کاملاً LTR است */
+}
+
+.input-group input[type="text"]::-webkit-input-placeholder { /* For Chrome, Safari, Opera */
+  text-align: left;
+}
+.input-group input[type="text"]::-moz-placeholder { /* For Firefox */
+  text-align: left;
+}
+.input-group input[type="text"]:-ms-input-placeholder { /* For Internet Explorer */
+  text-align: left;
+}
+.input-group input[type="text"]::placeholder { /* Standard */
+  text-align: left;
+}
+
+
+.input-group input[type="text"]:focus {
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+button#submit-rankings-btn {
+    background-color: #28a745; /* سبز */
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    width: 100%;
+}
+
+button#submit-rankings-btn:hover {
+    background-color: #218838;
+    transform: translateY(-1px);
+}
+
+button#submit-rankings-btn:active {
+    transform: translateY(0);
+}
+
+button#submit-rankings-btn:disabled {
+    background-color: #6c757d; /* خاکستری */
+    cursor: not-allowed;
+}
+
+.leaderboard-link {
+    display: block;
+    margin-top: 15px;
+    color: #007bff; /* آبی لینک */
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.2s ease;
+}
+
+.leaderboard-link:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+/* Messages */
+.message {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 6px;
+    font-weight: bold;
+    text-align: center;
+    list-style-type: none; /* حذف نشانگر لیست (نقطه) */
+    padding-left: 0;
+    padding-right: 0;
+    margin: 10px auto;
+    width: fit-content;
+}
+
+.message.success {
+    background-color: rgba(40, 167, 69, 0.2);
+    color: #28a745;
+}
+
+.message.error {
+    background-color: rgba(220, 53, 69, 0.2);
+    color: #dc3545;
+}
+
+
+/* Responsive Design */
+@media (max-width: 900px) {
+    .main-content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .tier-sections-container,
+    .right-panel {
+        min-width: unset;
+        width: 100%;
+        max-height: unset; /* برای موبایل، ارتفاع را محدود نکنید */
+    }
+}
+
+@media (max-width: 500px) {
+    .tier-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .tier-name {
+        margin-right: 0;
+        margin-top: 5px;
+        margin-left: 0; /* برای موبایل، margin-left را حذف کنید */
+    }
+    .tier-projects-dropzone {
+        width: 100%;
+        margin-top: 10px;
+    }
+    .project-grid-container {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    }
+}
+
+/* Footer Styles */
+.footer {
+    text-align: center;
+    margin-top: 40px; /* فاصله از محتوای بالا */
+    padding: 20px;
+    background-color: rgba(40, 40, 40, 0.5); /* یک پس‌زمینه شیشه‌ای کمی تیره‌تر */
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    width: 100%; /* مطمئن شوید عرض کامل را می‌گیرد */
+    max-width: 1200px; /* هم‌تراز با container اصلی */
+}
+
+.footer p {
+    margin: 0;
+    font-size: 0.9em;
+    color: #b0b0b0; /* رنگ متن کمی روشن‌تر */
+}
+
+.footer a {
+    color: #007bff; /* رنگ لینک آبی */
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.2s ease;
+}
+
+.footer a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
