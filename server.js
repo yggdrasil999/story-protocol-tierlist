@@ -3,14 +3,13 @@
 // Load environment variables from .env file
 require('dotenv').config();
 
-const express = require('express');
+const express = require('router'); // !!! اینجا 'router' به اشتباه نوشته شده بود، باید 'express' باشد !!!
 const path = require('path');
-const cors = require('cors'); // !!! اضافه شد: پکیج CORS !!!
+const cors = require('cors'); // اضافه شد: پکیج CORS
 const connectDB = require('./config/db');
 const rankingRoutes = require('./routes/rankings');
-const { seedProjects } = require('./public/js/projectsData');
 
-const app = express();
+const app = express(); // !!! تصحیح شد: app = express() !!!
 const PORT = process.env.PORT || 3000;
 
 // Connect to the database
