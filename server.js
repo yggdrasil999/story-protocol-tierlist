@@ -66,8 +66,9 @@ app.get('*', (req, res) => {
     }
 });
 
-// Start the server
-app.listen(PORT, () => {
+// server.js
+// ...
+app.listen(PORT, '0.0.0.0', () => { // !!! مهم: '0.0.0.0' اضافه شد !!!
     console.log(`Server running on port ${PORT}`);
     console.log(`Open http://localhost:${PORT}/tierlist.html in your browser`);
 });
